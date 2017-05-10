@@ -1,6 +1,7 @@
 [package]
 name = "probabilities"
 version = "0.1.0"
-authors = ["kelse"]
+authors = ["Kelsey Geiger"]
 
 [dependencies]
+rand = "*"
