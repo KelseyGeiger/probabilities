@@ -8,8 +8,8 @@ pub trait Distribution<Sample: Sized> {
     fn mu(&self) -> f64;
     fn sigma(&self) -> f64;
 
-    fn pdf(&self, x: Sample) -> Option<f64>;
-    fn cdf(&self, x: Sample) -> Option<f64>;
+    fn pdf(&self, x: Sample) -> f64;
+    fn cdf(&self, x: Sample) -> f64;
 }
 
 #[allow(dead_code)]

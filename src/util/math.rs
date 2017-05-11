@@ -1,6 +1,6 @@
 //Taken from https://codereview.stackexchange.com/a/116898
 #[allow(dead_code)]
-fn gamma(x: f64) -> f64 {
+pub fn gamma(x: f64) -> f64 {
     const COEFFICIENTS: [f64; 29] = [-0.00000000000000000023,
                                      0.00000000000000000141,
                                      0.00000000000000000119,
@@ -40,6 +40,10 @@ fn gamma(x: f64) -> f64 {
 }
 
 #[allow(dead_code)]
-fn large_fact(n: u64) -> f64 {
+pub fn large_fact(n: u64) -> f64 {
     gamma((n + 1) as f64)
+}
+
+pub fn binomial_coeff(n: u64, k: u64) -> f64 {
+    large_fact(n) / (large_fact(n - k) * large_fact(k))
 }

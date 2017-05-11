@@ -64,12 +64,21 @@ impl Distribution<i64> for DiscreteUniform {
         (e_x2 - ex_2).sqrt()
     }
 
-    #[allow(unused_variables)]
-    fn pdf(&self, x: i64) -> Option<f64> {
-        Some(((self.end - self.start) as f64).recip())
+    fn pdf(&self, x: i64) -> f64 {
+        if x >= self.start && x <= self.end {
+            ((self.end - self.start) as f64).recip()
+        } else {
+            0.0f64
+        }
     }
 
-    fn cdf(&self, x: i64) -> Option<f64> {
-        Some((x as f64) * ((self.end - self.start) as f64).recip())
+    fn cdf(&self, x: i64) -> f64 {
+        if x < self.start {
+            0.0f64
+        } else if x <= self.end {
+            (x as f64) * ((self.end - self.start) as f64).recip()
+        } else {
+            1.0f64
+        }
     }
 }
