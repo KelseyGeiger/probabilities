@@ -2,18 +2,18 @@ extern crate rand;
 
 pub use self::rand::Closed01;
 
-pub use distribution::*;
+pub use distribs::distribution::*;
 pub use std::clone::*;
 
 #[allow(dead_code)]
-struct ContinuousUniform {
+pub struct ContinuousUniform {
     start: f64,
     end: f64,
 }
 
 #[allow(dead_code)]
 impl ContinuousUniform {
-    fn new(start: f64, end: f64) -> ContinuousUniform {
+    pub fn new(start: f64, end: f64) -> ContinuousUniform {
         let lesser = if start <= end { start } else { end };
         let greater = if start >= end { start } else { end };
 

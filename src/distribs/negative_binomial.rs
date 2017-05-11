@@ -2,19 +2,19 @@ extern crate rand;
 
 pub use self::rand::Closed01;
 
-pub use distribution::*;
+pub use distribs::distribution::*;
 pub use std::clone::*;
 pub use util::math::*;
 
 #[allow(dead_code)]
-struct NegativeBinomial {
+pub struct NegativeBinomial {
     p: f64,
     k: u64,
 }
 
 #[allow(dead_code)]
 impl NegativeBinomial {
-    fn new(probability: f64, num_successes: u64) -> NegativeBinomial {
+    pub fn new(probability: f64, num_successes: u64) -> NegativeBinomial {
         NegativeBinomial {
             p: probability,
             k: num_successes,

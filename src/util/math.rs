@@ -1,3 +1,5 @@
+use std::f64::consts;
+
 //Taken from https://codereview.stackexchange.com/a/116898
 #[allow(dead_code)]
 pub fn gamma(x: f64) -> f64 {
@@ -46,4 +48,29 @@ pub fn large_fact(n: u64) -> f64 {
 
 pub fn binomial_coeff(n: u64, k: u64) -> f64 {
     large_fact(n) / (large_fact(n - k) * large_fact(k))
+}
+
+pub fn erf(x: f64) -> f64 {
+    const ERF_P: f64 = 0.3275911f64;
+    const ERF_COEFF: [f64; 5] = [0.254829592,
+                                 -0.284496736,
+                                 1.421413741,
+                                 -1.453152027,
+                                 1.061405429];
+
+    let t = (1.0f64 + ERF_P * x).recip();
+
+    let mut sum: f64 = 0.0f64;
+
+    for i in 0i32..4i32 {
+        sum += ERF_COEFF[i as usize] * ERF_P.powi(i + 1);
+    }
+
+    let exp_factor = -(x.powi(2)).exp();
+
+    1.0f64 - (sum * exp_factor)
+}
+
+pub fn phi(x: f64) -> f64 {
+    0.5f64 * (1.0f64 + erf(x * 2.0f64.sqrt().recip()))
 }

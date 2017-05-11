@@ -2,18 +2,18 @@ extern crate rand;
 
 pub use self::rand::Closed01;
 
-pub use distribution::*;
+pub use distribs::distribution::*;
 pub use std::clone::*;
 
 #[allow(dead_code)]
-struct DiscreteUniform {
+pub struct DiscreteUniform {
     pub start: i64,
     pub end: i64,
 }
 
 #[allow(dead_code)]
 impl DiscreteUniform {
-    fn new(start: i64, end: i64) -> DiscreteUniform {
+    pub fn new(start: i64, end: i64) -> DiscreteUniform {
         let less = if start <= end { start } else { end };
         let greater = if start >= end { start } else { end };
 
@@ -43,10 +43,7 @@ impl Distribution<i64> for DiscreteUniform {
     }
 
     fn mu(&self) -> f64 {
-        let p = ((self.end - self.start) as f64).recip();
-
-        //E(X) = Sum from x1 to xn of xi * p(xi)
-        (self.start..self.end).fold(0.0f64, |sum, next| sum + (next as f64) * p)
+        (self.end - self.start) as f64 / 2.0f64
     }
 
     fn sigma(&self) -> f64 {

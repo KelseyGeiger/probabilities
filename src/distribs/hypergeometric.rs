@@ -2,13 +2,13 @@ extern crate rand;
 
 pub use self::rand::Closed01;
 
-pub use distribution::*;
+pub use distribs::distribution::*;
 pub use std::clone::*;
 pub use util::math::*;
 
 #[allow(non_snake_case)]
 #[allow(dead_code)]
-struct Hypergeometric {
+pub struct Hypergeometric {
     N: u64,
     m: u64,
     n: u64,
@@ -16,7 +16,7 @@ struct Hypergeometric {
 
 #[allow(dead_code)]
 impl Hypergeometric {
-    fn new(total: u64, n_different: u64, n_picked: u64) -> Hypergeometric {
+    pub fn new(total: u64, n_different: u64, n_picked: u64) -> Hypergeometric {
         Hypergeometric {
             N: total,
             m: n_different,

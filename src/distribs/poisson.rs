@@ -4,20 +4,21 @@ pub use self::rand::Closed01;
 
 pub use distribs::distribution::*;
 pub use std::clone::*;
+pub use util::math::*;
 
 #[allow(dead_code)]
-pub struct Geometric {
-    p: f64,
+pub struct Poisson {
+    lambda: f64,
 }
 
 #[allow(dead_code)]
-impl Geometric {
-    pub fn new(prob: f64) -> Geometric {
-        Geometric { p: prob }
+impl Poisson {
+    pub fn new(rate: f64) -> Poisson {
+        Poisson { lambda: rate }
     }
 }
 
-impl Distribution<u64> for Geometric {
+impl Distribution<u64> for Poisson {
     fn sample(&self) -> RandomVariable<u64> {
         let Closed01(prob) = rand::random::<Closed01<f64>>();
         let mut cum_prob: f64 = 0.0f64;
@@ -37,18 +38,18 @@ impl Distribution<u64> for Geometric {
     }
 
     fn mu(&self) -> f64 {
-        self.p.recip()
+        self.lambda
     }
 
     fn sigma(&self) -> f64 {
-        (1.0f64 - self.p) * self.p.powi(2).recip()
+        self.lambda.sqrt()
     }
 
     fn pdf(&self, x: u64) -> f64 {
-        (1.0f64 - self.p).powf((x - 1) as f64) * self.p
+        (-self.lambda).exp() * (self.lambda.powf(x as f64)) / large_fact(x)
     }
 
     fn cdf(&self, x: u64) -> f64 {
-        1.0f64 - (1.0f64 - self.p).powf(x as f64)
+        (0..x).fold(0.0f64, |sum, next| sum + self.pdf(next))
     }
 }

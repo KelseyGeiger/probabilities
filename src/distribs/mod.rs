@@ -1,5 +1,3 @@
-extern crate rand;
-
 pub use self::distribution::*;
 pub use self::discrete_uniform::*;
 pub use self::continuous_uniform::*;
@@ -7,6 +5,9 @@ pub use self::binomial::*;
 pub use self::negative_binomial::*;
 pub use self::geometric::*;
 pub use self::hypergeometric::*;
+pub use self::poisson::*;
+pub use self::exponential::*;
+pub use self::gaussian::*;
 
 pub mod distribution;
 pub mod discrete_uniform;
@@ -15,3 +16,6 @@ pub mod binomial;
 pub mod negative_binomial;
 pub mod geometric;
 pub mod hypergeometric;
+pub mod poisson;
+pub mod exponential;
+pub mod gaussian;
