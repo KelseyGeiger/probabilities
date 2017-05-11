@@ -4,25 +4,20 @@ pub use self::rand::Closed01;
 
 pub use distribution::*;
 pub use std::clone::*;
-pub use util::math::*;
 
 #[allow(dead_code)]
-struct NegativeBinomial {
+struct Geometric {
     p: f64,
-    k: u64,
 }
 
 #[allow(dead_code)]
-impl NegativeBinomial {
-    fn new(probability: f64, num_successes: u64) -> NegativeBinomial {
-        NegativeBinomial {
-            p: probability,
-            k: num_successes,
-        }
+impl Geometric {
+    fn new(prob: f64) -> Geometric {
+        Geometric { p: prob }
     }
 }
 
-impl Distribution<u64> for NegativeBinomial {
+impl Distribution<u64> for Geometric {
     fn sample(&self) -> RandomVariable<u64> {
         let Closed01(prob) = rand::random::<Closed01<f64>>();
         let mut cum_prob: f64 = 0.0f64;
@@ -42,19 +37,18 @@ impl Distribution<u64> for NegativeBinomial {
     }
 
     fn mu(&self) -> f64 {
-        (self.k as f64) / (self.p)
+        self.p.recip()
     }
 
     fn sigma(&self) -> f64 {
-        (self.k as f64) * (1.0f64 - self.p) / (self.p.powi(2))
+        (1.0f64 - self.p) * self.p.powi(2).recip()
     }
 
     fn pdf(&self, x: u64) -> f64 {
-        binomial_coeff(x - 1, self.k - 1) * self.p.powf(self.k as f64) *
-        (1.0f64 - self.p).powf((x - self.k) as f64)
+        (1.0f64 - self.p).powf((x - 1) as f64) * self.p
     }
 
     fn cdf(&self, x: u64) -> f64 {
-        (0..x).fold(0.0f64, |sum, next| sum + self.pdf(next))
+        1.0f64 - (1.0f64 - self.p).powf(x as f64)
     }
 }
