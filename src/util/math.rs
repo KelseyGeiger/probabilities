@@ -37,9 +37,9 @@ pub fn gamma(x: f64) -> f64 {
 
     let loop_constant = (x - 1.0f64);
 
-    COEFFICIENTS
+    TAYLOR_COEFFICIENTS
         .iter()
-        .fold(INITIAL,
+        .fold(INITIAL_SUM,
               |sum, coefficient| (sum * loop_constant) + coefficient)
 }
 
