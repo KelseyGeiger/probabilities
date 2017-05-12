@@ -41,7 +41,6 @@ pub fn gamma(x: f64) -> f64 {
         .iter()
         .fold(INITIAL,
               |sum, coefficient| (sum * loop_constant) + coefficient)
-        .recip()
 }
 
 #[allow(dead_code)]
