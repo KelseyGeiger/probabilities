@@ -51,7 +51,8 @@ impl Distribution<u64> for Binomial {
 
     fn pdf(&self, x: u64) -> f64 {
         if x <= self.n {
-            binomial_coeff(self.n, x) * self.p.powf(x as f64) * (1.0f64 - self.p).powf(x as f64)
+            binomial_coeff(self.n, x) * self.p.powf(x as f64) *
+            (1.0f64 - self.p).powf((self.n - x) as f64)
         } else {
             0.0f64
         }
