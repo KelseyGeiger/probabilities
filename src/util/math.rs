@@ -35,11 +35,13 @@ pub fn gamma(x: f64) -> f64 {
 
     const INITIAL: f64 = 0.00000000000000000002;
 
-    let loop_constant = (x - 1.0f64)
+    let loop_constant = (x - 1.0f64);
 
     COEFFICIENTS
         .iter()
-        .fold(INITIAL, |sum, coefficient| { (sum * loop_constant) + coefficient} ).recip()
+        .fold(INITIAL,
+              |sum, coefficient| (sum * loop_constant) + coefficient)
+        .recip()
 }
 
 #[allow(dead_code)]
