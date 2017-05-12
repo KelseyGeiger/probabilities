@@ -44,7 +44,11 @@ pub fn gamma(x: f64) -> f64 {
 
 #[allow(dead_code)]
 pub fn large_fact(n: u64) -> f64 {
-    gamma((n + 1) as f64)
+    if n > 0 {
+        (n as f64) * large_fact(n - 1)
+    } else {
+        1.0f64
+    }
 }
 
 pub fn binomial_coeff(n: u64, k: u64) -> f64 {
