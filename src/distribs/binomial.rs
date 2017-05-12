@@ -31,7 +31,7 @@ impl Distribution<u64> for Binomial {
         for _ in 0..self.n {
             cum_prob += self.pdf(k);
 
-            println!("{}", cum_prob);
+            println!("{}", self.pdf(k));
 
             if cum_prob > prob {
                 break;
