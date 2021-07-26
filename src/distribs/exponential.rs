@@ -2,8 +2,8 @@ extern crate rand;
 
 pub use self::rand::Closed01;
 
-pub use distribs::distribution::*;
-pub use std::clone::*;
+use crate::distribs::distribution::*;
+use std::cell::Cell;
 
 #[allow(dead_code)]
 pub struct Exponential {

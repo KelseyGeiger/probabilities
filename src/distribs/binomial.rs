@@ -2,9 +2,8 @@ extern crate rand;
 
 pub use self::rand::Closed01;
 
-pub use distribs::distribution::*;
-pub use std::clone::*;
-pub use util::math::*;
+use crate::distribs::distribution::*;
+use crate::util::math::*;
 
 #[allow(dead_code)]
 pub struct Binomial {

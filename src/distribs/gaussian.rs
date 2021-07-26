@@ -2,9 +2,8 @@ extern crate rand;
 
 pub use self::rand::Closed01;
 
-pub use distribs::distribution::*;
-pub use std::clone::*;
-pub use util::math::*;
+use crate::distribs::distribution::*;
+use crate::util::math::*;
 use std::f64::consts;
 
 #[allow(dead_code)]
