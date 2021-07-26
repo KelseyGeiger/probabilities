@@ -2,6 +2,9 @@
 name = "probabilities"
 version = "0.1.0"
 authors = ["Kelsey Geiger"]
+edition = "2018"
+description = "Compact library for sampling and calculations related to various statistical distributions."
+license = "MIT OR Apache-2.0"
 
 [dependencies]
 rand = "*"
