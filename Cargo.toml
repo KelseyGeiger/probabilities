@@ -7,4 +7,4 @@ description = "Compact library for sampling and calculations related to various 
 license = "MIT OR Apache-2.0"
 
 [dependencies]
-rand = "*"
+rand = "0.8.4"
