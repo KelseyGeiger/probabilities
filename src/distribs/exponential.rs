@@ -1,7 +1,5 @@
 extern crate rand;
 
-pub use self::rand::Closed01;
-
 use crate::distribs::distribution::*;
 use std::cell::Cell;
 
@@ -19,7 +17,7 @@ impl Exponential {
 impl Distribution<f64> for Exponential {
     //Using the Inverse Transfom Sampling method (https://en.wikipedia.org/wiki/Inverse_transform_sampling)
     fn sample(&self) -> RandomVariable<f64> {
-        let Closed01(prob) = rand::random::<Closed01<f64>>();
+        let prob = rand::random::<f64>();
         let factor = -self.lambda.recip();
 
         RandomVariable { value: Cell::new(factor * (1.0f64 - prob).ln()) }

@@ -1,7 +1,5 @@
 extern crate rand;
 
-pub use self::rand::Closed01;
-
 use crate::distribs::distribution::*;
 use std::cell::Cell;
 
@@ -19,7 +17,7 @@ impl Geometric {
 
 impl Distribution<u64> for Geometric {
     fn sample(&self) -> RandomVariable<u64> {
-        let Closed01(prob) = rand::random::<Closed01<f64>>();
+        let prob = rand::random::<f64>();
         let mut cum_prob: f64 = 0.0f64;
         let mut k: u64 = 0u64;
 

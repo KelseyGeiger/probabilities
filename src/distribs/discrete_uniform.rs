@@ -1,7 +1,5 @@
 extern crate rand;
 
-pub use self::rand::Closed01;
-
 use crate::distribs::distribution::*;
 use std::cell::Cell;
 
@@ -26,7 +24,7 @@ impl DiscreteUniform {
 
 impl Distribution<i64> for DiscreteUniform {
     fn sample(&self) -> RandomVariable<i64> {
-        let Closed01(prob) = rand::random::<Closed01<f64>>();
+        let prob = rand::random::<f64>();
         let width = self.end - self.start;
         let samp = prob * (width as f64) + self.start as f64;
         let mut value = self.start;

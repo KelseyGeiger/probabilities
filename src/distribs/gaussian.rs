@@ -1,7 +1,5 @@
 extern crate rand;
 
-pub use self::rand::Closed01;
-
 use crate::distribs::distribution::*;
 use crate::util::math::*;
 use std::f64::consts;
@@ -24,8 +22,8 @@ impl Gaussian {
 impl Distribution<f64> for Gaussian {
     //Using the Box–Muller transform (https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform)
     fn sample(&self) -> RandomVariable<f64> {
-        let Closed01(u_1) = rand::random::<Closed01<f64>>();
-        let Closed01(u_2) = rand::random::<Closed01<f64>>();
+        let u_1 = rand::random::<f64>();
+        let u_2 = rand::random::<f64>();
 
         let u_1_term = (-2.0f64 * (u_1.ln())).sqrt();
         let u_2_term = (2.0f64 * consts::PI * u_2).cos();

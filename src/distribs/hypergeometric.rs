@@ -1,7 +1,5 @@
 extern crate rand;
 
-use self::rand::Closed01;
-
 use crate::distribs::distribution::*;
 use crate::util::math::*;
 
@@ -26,7 +24,7 @@ impl Hypergeometric {
 
 impl Distribution<u64> for Hypergeometric {
     fn sample(&self) -> RandomVariable<u64> {
-        let Closed01(prob) = rand::random::<Closed01<f64>>();
+        let prob = rand::random::<f64>();
         let low_lim = if self.n < self.m { self.n } else { self.m };
         let mut cum_prob: f64 = 0.0f64;
         let mut k: u64 = 0u64;
